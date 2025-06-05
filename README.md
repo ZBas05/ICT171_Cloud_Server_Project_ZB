@@ -4,7 +4,7 @@ Cloud Server Project for ICT171
 
 **Student Name:** [Your Full Name]  
 **Student Number:** [Your Student Number]  
-**Live Site:** http://13.211.64.21  
+**Live Site:** https://www.cooleatsperth.xyz  
 **Video Walkthrough:** [Insert Link to Video Here]
 
 ---
@@ -21,10 +21,10 @@ This project involves developing a cloud server on WordPress running on AWS thro
 - **Service Used:** EC2 (Elastic Compute Cloud)
 
 **Setup Details:**
-- **Instance Type:** `t2.micro` (Free Tier)
+- **Instance Type:** t2.micro (Free Tier)
 - **Operating System:** Ubuntu 22.04 LTS
-- **Key Pair Name:** `ICT171ec2.pem`
-- **Region:** Asia Pacific (Sydney) `ap-southeast-2`
+- **Key Pair Name:** ICT171ec2.pem
+- **Region:** Asia Pacific (Sydney) ap-southeast-2
 - **Public IPv4 Address:** [http://13.211.64.21](http://13.211.64.21)
 
 ---
@@ -50,5 +50,13 @@ To securely access the EC2 instance, I used the following steps:
 1. Adjusted file permissions on the PEM key:
    ```bash
    chmod 400 ICT171ec2.pem
+2. Connected to the EC2 instance via SSH:
+   ```bash
+   ssh -i "ICT171ec2.pem" ubuntu@13.211.64.21
+Once connected, I've got full terminal access to the instance.
+
+---
+
+## 5.
 
 
