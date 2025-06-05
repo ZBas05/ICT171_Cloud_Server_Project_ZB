@@ -136,3 +136,67 @@ EXIT;
 
 ---
 
+## 8. Nginx Configuration
+
+### 8.1 Navigate to Nginx Config Folder and Create WordPress Server Block
+To get to the Nginix Config Folder, simply use the following as we will be working in the ```sites-available``` folder:
+```bash
+cd /etc/nginx/
+ls
+cd sites-available/
+```
+Then create the WordPress config file using:
+```bash
+sudo vim wordpress.conf
+```
+Once in the file, copy and paste the following into the file:
+- Remember to edit the file, enter insert mode using ```I``` and exit it using ```ESC```.
+- Once out of insert mode use ```:wq``` to save and exit the file.
+
+```nginx
+upstream php-handler {
+    server unix:/var/run/php/php7.4-fpm.sock;
+}
+server {
+    listen 80;
+    server_name cooleatsperth.xyz www.cooleatsperth.xyz;
+    root /var/www/wordpress;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass php-handler;
+    }
+}
+```
+Keep in mind that if you are not using the ```php7.4``` version, then you will need to change this part.
+
+### 8.2 Enable the Site and Test
+Use the commands below to:
+- Check that the PHP socket exists:
+```bash
+ls /var/run/php/php7.4-fpm.sock
+```
+
+- Then link the config file:
+```bash
+sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
+```
+
+- Test the Nginx config:
+```bash
+sudo nginx -t
+```
+
+---
+
+
+
+- Restart Nginx:
+```bash
+sudo systemctl restart nginx
+```
