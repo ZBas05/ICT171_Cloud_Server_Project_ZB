@@ -192,11 +192,10 @@ sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 sudo nginx -t
 ```
 
----
-
-
-
 - Restart Nginx:
 ```bash
 sudo systemctl restart nginx
 ```
+
+---
+
