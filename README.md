@@ -57,6 +57,9 @@ Once connected, I've got full terminal access to the instance.
 
 ---
 
-## 5.
+## 5. PHP & MariaDB Installation
 
-
+1. In preparation for WordPress, I installed PHP and MariaDB:
+   ```bash
+   sudo apt install nginx mariadb-server php-fpm php-mysql
+Once configured, these packages will enable WordPress to run and interact with a backend database.
