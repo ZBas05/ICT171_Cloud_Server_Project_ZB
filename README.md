@@ -151,11 +151,11 @@ sudo vim wordpress.conf
 ```
 Once in the file, copy and paste the following into the file:
 - Remember to edit the file, enter insert mode using ```I``` and exit it using ```ESC```.
-- Once out of insert mode use ```:wq``` to save and exit the file.
+- Once out of insert mode, use ```:wq``` to save and exit the file.
 
 ```nginx
 upstream php-handler {
-    server unix:/var/run/php/php7.4-fpm.sock;
+    server unix:/var/run/php/php8.3-fpm.sock;
 }
 server {
     listen 80;
@@ -173,7 +173,7 @@ server {
     }
 }
 ```
-Keep in mind that if you are not using the ```php7.4``` version, then you will need to change this part.
+Remember that you will need to change this part if you are not using the ```php8.3``` version.
 
 ### 8.2 Enable the Site and Test
 Use the commands below to:
