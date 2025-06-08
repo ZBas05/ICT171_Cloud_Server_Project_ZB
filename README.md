@@ -2,10 +2,11 @@
 Cloud Server Project for ICT171
 # Cloud Server Project – ICT171
 
-**Student Name:** [Your Full Name]  
-**Student Number:** [Your Student Number]  
+**Student Name:** Zane Basso  
+**Student Number:** 35130891  
 **Live Site:** https://www.cooleatsperth.xyz  
-**Video Walkthrough:** [Insert Link to Video Here]
+**Video Explainer:** https://drive.google.com/file/d/1JdmK1obLyWvr26FhMRik78aht-Gj93Zt/view?usp=sharing
+
 
 ---
 
