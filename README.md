@@ -199,3 +199,33 @@ sudo systemctl restart nginx
 
 ---
 
+## 9. Installing Additional PHP Extensions
+WordPress requires several common PHP modules that do not come pre-installed:
+```bash
+sudo apt install php-curl php-dom php-mbstring php-imagick php-zip php-gd php-intl
+```
+These were the one that I needed, however you may need more or less depending on what your Wordpress says.
+
+---
+
+## 10. Install and Configure SSL with Certbot
+### 10.1 Install Certbot
+I installed Certbot using the following commands bellow:
+```bash
+sudo apt install snapd
+sudo snap install core; snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+```
+You will need to wait a bit for it to download.
+
+### 10.2 Obtain SSL Certificate
+After it is done downloading, to get the SSL Certificate use the command bellow:
+```bash
+sudo certbot --nginx
+```
+
+Certbot will prompt you to select the domain(s) to enable HTTPS, check that they're the correct domains and choose both of them. It will automatically configure Nginx to redirect HTTP to HTTPS.
+After this go back to your Wordpress dashboard and change the WordPress Address and Site Address form "http" to "https".
+
+---
