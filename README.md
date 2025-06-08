@@ -180,7 +180,7 @@ Remember that you will need to change this part if you are not using the ```php8
 Use the commands below to:
 - Check that the PHP socket exists:
 ```bash
-ls /var/run/php/php7.4-fpm.sock
+ls /var/run/php/php8.3-fpm.sock
 ```
 
 - Then link the config file:
