@@ -7,6 +7,7 @@ Cloud Server Project for ICT171
 **Live Site:** https://www.cooleatsperth.xyz  
 **Video Explainer:** https://drive.google.com/file/d/1JdmK1obLyWvr26FhMRik78aht-Gj93Zt/view?usp=sharing
 
+**Note:** I was originally documenting the assignment on a Word document and working on it over time. I then added its contents to this GitHub repository, and this is why its timeline is quite short.
 
 ---
 
@@ -68,9 +69,26 @@ Once configured, these packages will enable WordPress to run and interact with a
 
 ---
 
-## 6. WordPress Installation and Permissions
+## 6. Domain Configuration (Namecheap)
 
-### 6.1 Download and Extract WordPress
+I registered the domain **cooleatsperth.xyz** via [Namecheap](https://www.namecheap.com) and pointed it to my AWS EC2 instance using A and CNAME records.
+
+### DNS Records:
+- **A Record**
+  - **Host:** `@`
+  - **Value:** `13.211.64.21` (EC2 Public IP)
+- **CNAME Record**
+  - **Host:** `www`
+  - **Value:** `@`
+
+This setup allows both `cooleatsperth.xyz` and `www.cooleatsperth.xyz` to load the site hosted on my EC2 instance.
+The DNS propagation was completed within an hour, so it doesn't take too long.
+
+---
+
+## 7. WordPress Installation and Permissions
+
+### 7.1 Download and Extract WordPress
 I downloaded the latest version of WordPress and extracted it:
 ```bash
 sudo wget https://wordpress.org/latest.tar.gz
@@ -82,7 +100,7 @@ I then made sure the extraction worked using:
 ls -la
 ```
 
-### 6.2 Set Ownership and Permissions
+### 7.2 Set Ownership and Permissions
 I changed ownership to allow the web server to access WordPress files:
 ```bash
 sudo chown -R www-data:www-data wordpress/
@@ -106,9 +124,9 @@ ls -la
 ```
 ---
 
-## 7. Securing MariaDB and Creating a Database
+## 8. Securing MariaDB and Creating a Database
 
-### 7.1 Secure Installation
+### 8.1 Secure Installation
 For the secure installation, I did the following:
 ```bash
 sudo mysql_secure_installation
@@ -121,7 +139,7 @@ This is how I responded to the following prompts:
 - **Remove test database:** ```Y```
 - **Reload privilege tables:** ```Y```
 
-### 7.2 Create Database and User
+### 8.2 Create Database and User
 To get inside the MariaDB shell, I used:
 ```bash
 sudo mysql -u root -p
@@ -137,9 +155,9 @@ EXIT;
 
 ---
 
-## 8. Nginx Configuration
+## 9. Nginx Configuration
 
-### 8.1 Navigate to Nginx Config Folder and Create WordPress Server Block
+### 9.1 Navigate to Nginx Config Folder and Create WordPress Server Block
 To get to the Nginix Config Folder, simply use the following as we will be working in the ```sites-available``` folder:
 ```bash
 cd /etc/nginx/
@@ -176,7 +194,7 @@ server {
 ```
 Remember that you will need to change this part if you are not using the ```php8.3``` version.
 
-### 8.2 Enable the Site and Test
+### 9.2 Enable the Site and Test
 Use the commands below to:
 - Check that the PHP socket exists:
 ```bash
@@ -200,7 +218,7 @@ sudo systemctl restart nginx
 
 ---
 
-## 9. Installing Additional PHP Extensions
+## 10. Installing Additional PHP Extensions
 WordPress requires several common PHP modules that do not come pre-installed:
 ```bash
 sudo apt install php-curl php-dom php-mbstring php-imagick php-zip php-gd php-intl
@@ -209,8 +227,8 @@ These were the one that I needed, however you may need more or less depending on
 
 ---
 
-## 10. Install and Configure SSL with Certbot
-### 10.1 Install Certbot
+## 11. Install and Configure SSL with Certbot
+### 11.1 Install Certbot
 I installed Certbot using the following commands bellow:
 ```bash
 sudo apt install snapd
@@ -220,7 +238,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
 You will need to wait a bit for it to download.
 
-### 10.2 Obtain SSL Certificate
+### 11.2 Obtain SSL Certificate
 After it is done downloading, to get the SSL Certificate use the command bellow:
 ```bash
 sudo certbot --nginx
